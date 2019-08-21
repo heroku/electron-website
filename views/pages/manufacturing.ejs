@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Electron Motors</title>
+    <% include ../partials/header.ejs %>
+</head>
+
+<body class="custom">
+    <div id="app" class="page-wrapper">
+        <div>
+            <% include ../partials/nav.ejs %>
+        </div>
+
+        <div class="backdrop">
+            <div id="car-wrapper">
+                <img id="car-photo" v-bind:src="'/images/' + vehicle.model__c.toLowerCase() + '.png'" v-bind:style="{'-webkit-filter': 'hue-rotate(' + vehicle.paint__c + 'deg)'}" />
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="detail-wrapper col-8">
+                    <div class="edition-wrapper row">
+                        <div class="col card" v-on:click="vehicle.battery__c = '75 kWh'; updateVehicle();" v-bind:class="{selected : vehicle.battery__c == '75 kWh'}">
+                            <h2>75D</h2>
+                            <div>75 kWh</div>
+                            <div>Up to 259 miles</div>
+                            <div>EPA range</div>
+                        </div>
+                        <div class="col card" v-on:click="vehicle.battery__c = '100 kWh'; updateVehicle();" v-bind:class="{selected : vehicle.battery__c == '100 kWh'}">
+                            <h2>100D</h2>
+                            <div>100 kWh</div>
+                            <div>Up to 335 miles</div>
+                            <div>EPA range</div>
+                        </div>
+                        <div class="col card" v-on:click="vehicle.battery__c = '100P kWh'; updateVehicle();" v-bind:class="{selected : vehicle.battery__c == '100P kWh'}">
+                            <h2>100P</h2>
+                            <div>Zero to 60 in 2.5 sec</div>
+                            <div>Up to 315 miles</div>
+                            <div>EPA range</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col card">
+                            <h3>Paint</h3>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="color red" v-on:click="vehicle.paint__c = '0'; updateVehicle();" v-bind:class="{selected : vehicle.paint__c == '0'}"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="color blue" v-on:click="vehicle.paint__c = '230'; updateVehicle();" v-bind:class="{selected : vehicle.paint__c == '230'}"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="color green" v-on:click="vehicle.paint__c = '130'; updateVehicle();" v-bind:class="{selected : vehicle.paint__c == '130'}"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="color purple" v-on:click="vehicle.paint__c = '1000'; updateVehicle();" v-bind:class="{selected : vehicle.paint__c == '1000'}"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="color teal" v-on:click="vehicle.paint__c = '4150'; updateVehicle();" v-bind:class="{selected : vehicle.paint__c == '4150'}"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="color brown" v-on:click="vehicle.paint__c = '55'; updateVehicle();" v-bind:class="{selected : vehicle.paint__c == '55'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col card">
+                            <h3>Options</h3>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="option">
+                                        <input type="checkbox" v-model="vehicle.self_driving__c" true-value="true" false-value="false" @change="updateVehicle" />
+                                        <label>Self Driving Capability</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" v-model="vehicle.autopilot__c" true-value="true" false-value="false" @change="updateVehicle" />
+                                        <label>Enhanced Autopilot</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="option">
+                                        <input type="checkbox" v-model="vehicle.sunroof__c" true-value="true" false-value="false" @change="updateVehicle" />
+                                        <label>Sunroof</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" v-model="vehicle.spoiler__c" true-value="true" false-value="false" @change="updateVehicle" />
+                                        <label>Carbon Fiber Spoiler</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="option">
+                                        <input type="checkbox" v-model="vehicle.rear_seats__c" true-value="true" false-value="false" @change="updateVehicle" />
+                                        <label>Rear Seats</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" v-model="vehicle.hydraulic_system__c" true-value="true" false-value="false" @change="updateVehicle" />
+                                        <label>Hydraulic System</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buy-wrapper col-4">
+                    <div class="card">
+
+                        <div id="purchase" class="tabcontent">
+                            <h2>Order Status</h2>
+                            <div>Current Status</div>
+                            <h3>Manufacturing</h3>
+                            <div>Estimated Delivery Date</div>
+                            <h3>Sept. 14, 2019</h3>
+                            <div>Delivery Destination</div>
+                            <h3><a href="#">The Woodlands</a></h3>
+
+                        </div>
+
+                        <div class="bottom-wrapper">
+                            <div class="delivery">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                {{ monthNames[new Date().getMonth() + 1] }} Delivery
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <% include ../partials/login.ejs %>
+        </div>
+
+        <div id="toast">Vehicle preferences saved.</div>
+    </div>
+
+    <div>
+        <% include ../partials/footer.ejs %>
+    </div>
+</body>
+
+</html>
