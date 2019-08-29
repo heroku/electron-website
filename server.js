@@ -50,15 +50,15 @@ express()
             });
         });
     })
-    .get("/manufacturing", function (request, response) {
-        var username = request.cookies.username;
-        db.getAccountAndVehicleByUsername(username, data => {
-            response.render("pages/manufacturing", {
-                account: data.account,
-                vehicle: data.vehicle
-            });
-        });
-    })
+    .get("/manufacturing", function (request, response) { 
+        var username = request.cookies.username; 
+        db.getAccountAndVehicleByUsername(username, data => { 
+            response.render("pages/manufacturing", { 
+                account: data.account, 
+                vehicle: data.vehicle 
+            }); 
+        }); 
+    }) 
     .get("/dashboard", function (request, response) {
         var username = request.cookies.username;
         db.getAccountAndVehicleByUsername(username, data => {

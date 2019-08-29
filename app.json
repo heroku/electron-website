@@ -4,5 +4,5 @@
   "repository": "https://github.com/gabesumner/electron-website",
   "keywords": ["node", "express", "heroku", "salesforce"],
   "image": "heroku/nodejs",
-  "addons": [ "heroku-postgresql", "herokuconnect" ]
+  "addons": [ "heroku-postgresql" ]
 }
