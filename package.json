@@ -13,10 +13,10 @@
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.6",
-    "eslint": "^5.16.0",
+    "eslint": "^7.0.0",
     "express": "^4.15.2",
     "path": "^0.12.7",
-    "pg": "^7.4.3",
+    "pg": "^8.4.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
